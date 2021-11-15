@@ -85,7 +85,7 @@ add_cmd() {
           [[ -n "${_tag}" ]] || _tag="latest"
           ;;
       esac
-      echo "${arg}" >> ${CONFIG_PATH}/cmds/${_cmd}
+      echo "${arg}" > ${CONFIG_PATH}/cmds/${_cmd}
     done
     [[ -n "${_image}" ]] || fail "Image Required"
   else
