@@ -149,7 +149,7 @@ shell_for() {
 
   [[ "" == "${cmd}" ]] || cmd_exists "${cmd}" || unknown "${cmd}"
   image=$(image_for "${cmd}")
-  docker_run -it -v $HOME/:/root "${image}" bash "${@}"
+  docker_run -it -v --platform="linux/amd64" $HOME/:/root "${image}" bash "${@}"
 }
 
 run_cmd() {
@@ -169,7 +169,7 @@ run_cmd() {
   do _c="${_c} -v $HOME/${_config}:/root/${_config}"
   done
 
-  docker_run -i ${_c} "${_image}:${_tag:-latest}" "${_cmd:-"${cmd}"}" "${@}"
+  docker_run -i ${_c} --platform="linux/amd64" "${_image}:${_tag:-latest}" "${_cmd:-"${cmd}"}" "${@}"
 }
 
 cmd_exists() {
